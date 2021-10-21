@@ -1,0 +1,119 @@
+---
+title: Statistical Machine Learning for Medicinal Plant Leaves Classification
+author:
+  - name: Jayani P.G. Lakshika
+    affil: 1
+  - name: Thiyanga S. Talagala
+    affil: 2
+affiliation:
+  - num: 1
+    address: Department of Statistics, University of Sri Jayewardenepura, Nugegoda, Sri Lanka
+column_numbers: 4
+logoright_name: sticker1.png
+logoleft_name: sticker.png
+output: 
+  posterdown::posterdown_html:
+    self_contained: false
+  css: "style.css"
+knit: pagedown::chrome_print
+bibliography: ref.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introduction
+
+Medicinal plant species identification is costly, time-consuming, and requires lots of effort, and expert knowledge. Recently, many researchers use deep learning methods like CNN (Convolution Neural Network) to classify plants directly using plant images. Even though deep learning models have achieved great success, their interpretability, and transparency of the deep learning models are limited. Also, deep learning models require a large memory space and become computationally prohibitive. To conquer this, we introduce an image feature-based statistical machine learning algorithm.
+
+
+* **Main Objective**: <span style="color: blue;"> Develop an automatic algorithm to classify medicinal plants by using statistical machine learning approach.</style> 
+
+<span style="color: black;">
+```{r pic, echo=FALSE, out.width="45%", fig.align='center',fig.cap="Taking a photograph of a leaf."}
+knitr::include_graphics(here::here("Figures","pic.jpeg"))
+```
+
+
+* **Significance of the study**: To avoid misidentifying medicinal plants.</style> 
+
+* <span style="color: red;">**Why leaf images?**</style>  <span style="color: black;">**Leaf images** are considered as they contain large number of diverse set of features.</style> 
+
+```{r shf, echo=FALSE, out.width="90%", fig.align='center',fig.cap="\\label{shf}Shape-based features."}
+knitr::include_graphics(here::here("Figures","sh_f.PNG"))
+```
+
+* Our classification algorithm operates on the features extracted from the image leaves. 
+
+```{r mr, echo=FALSE, out.width="80%", fig.align='center',fig.cap="\\label{mr}(a) Leaf shape (b) Leaf margin"}
+knitr::include_graphics(here::here("Figures","all_edge_imgshape.png"))
+```
+
+# Methodology
+
+```{r algo, echo=FALSE, out.width="100%", fig.align='center',fig.cap="Overview of algorithm."}
+knitr::include_graphics(here::here("Figures","algo_new.png"))
+```
+
+* **Offline phase** contains 4 main steps: i) Image processing, ii) Feature extraction, iii) Label images, and iv) Trained a algorithm.
+
+* We trained our algorithm using random forest, gradient boosting, and extreme gradient boosting.
+
+```{r figtest2, echo=FALSE, out.width="90%", fig.align='center',fig.cap="Image processing."}
+knitr::include_graphics(here::here("Figures","image_processing.png"))
+```
+
+* **Online phase**, the pre-trained classification model is used for real-time leaf image classification.
+
+
+# Data
+
+* Five leaf datasets of different countries (i) Flavia 1907 images collected from China, (ii) Swedish 975 images collected from Sweden, and (iii) Kaggle 1584 images collected from United Kingdom (UK), and (iv) MedLEA 1099 images collected from Sri Lanaka.
+
+```{r dd, echo=FALSE, out.width="90%", fig.align='center',fig.cap="\\label{dd}Datasets."}
+knitr::include_graphics(here::here("Figures","datasets.png"))
+```
+
+
+
+# Visualization
+
+```{r pca, echo=FALSE, out.width="80%", fig.align='center',fig.cap="\\label{pca}Distribution of Swedish leaf images on the projection space created based on principal component analysis. All projected points are coloured according to their shape labels."}
+knitr::include_graphics(here::here("Figures","PCA_swd.png"))
+```
+
+We explore the ability of features to discriminate the classes of interest using PCA and LDA. Under both experimental settings clear separation of classes are visible in their projection spaces (see <a href="https://drive.google.com/file/d/1IDW-9Qm1JxN-yX0gytMtBzVYHql5Fszx/view?usp=sharing">3D view</a>). 
+
+# MedLEA
+
+The <span style="color: red;">MedLEA: **Med**icinal **LEA**f</span> package is an open-source R software (<a href="https://CRAN.R-project.org/package=MedLEA">https://CRAN.R-project.org/package=MedLEA</a>) for research <span style="color: green;">**reproducibility**</span>. This repository provides morphological and structural features of 471 medicinal plant leaves and 1099 leaf images of 31 species and 29-45 images per species in Sri Lanka.
+
+
+# MEDIPI
+
+Our medicinal plant classification algorithm is defined as MEDIPI:  <span style="color: blue;">**MEDI**cinal **P**lant **I**dentification</span> (<a href="https://github.com/JayaniLakshika/MEDIPI">https://github.com/JayaniLakshika/MEDIPI</a>). The MEDIPI is divided into the offline phase and an online phase. 
+
+# Features
+
+We introduced 52 computationally efficient interpretable features that are useful in leaf classification [@lakshika2021computeraided]. 
+
+```{r feature, echo=FALSE, out.width="80%", fig.align='center',fig.cap="\\label{feature}Features."}
+knitr::include_graphics(here::here("Figures","features.PNG"))
+```
+
+
+# Conclusions
+
+* We introduced 52 computationally efficient interpretable features to classify plant species. These feature are mainly classified in to four groups as (i) shape, (ii) color, (iii) texture, and (iv) scagnostics.
+
+* The model trained with <span style="color: red;">random forest</span> algorithm provides the highest accuracy.
+
+* Our algorithm works as a **hierarchical classification system** which classifies according to shape, edge type (see Figure \@ref(fig:mr)), and plant species. We observed that shape features are more important when classify the leaf images in the first level of the hierarchy. Scagnostic features are more important in identifying leaf species in the bottom level of the hierarchy. 
+
+
+* The **MEDIPI** algorithm yields accurate results to the state-of-the existing techniques in the field. 
+
+* We used high dimensional visualization approach as Linear Discriminant Analysis (LDA) to visualize what is happening inside the trained algorithm and provides transparency to our black$-$box model.
+
+# References
